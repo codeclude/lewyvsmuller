@@ -1,6 +1,5 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import * as d3 from "d3";
-import useInterval from "@use-it/interval";
 import './App.css';
 import * as mullergoals from './mullergoals.json'
 
