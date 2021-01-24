@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import Page from './Ant';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <div style={{margin: 20}}>
+      <h1>Lewy 20/21 vs Müller 71/72</h1>
+      <Page />
+    </div>
   </React.StrictMode>,
   document.getElementById('root')
 );
