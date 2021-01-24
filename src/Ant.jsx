@@ -28,10 +28,41 @@ function Page() {
             const muller = mullergoalsJSON.map(el => ({...el, key: 'muller'}))
             const data = [...lewy, ...muller];
             const sorted = data.sort((el1, el2) => el1.round - el2.round);
+            console.log('sorted', sorted)
             setConfig({
                 data: sorted,
                 xField: 'round',
                 yField: 'goals',
+                height: window.outerHeight - 20,
+                label: {
+                    style:{
+                      fontSize: 16,
+                      fontWeight: 300,
+                      textAlign: 'center',
+                      textBaseline: 'middle',
+                    }
+                },
+                tooltip: {
+                    label: {
+                        style: {
+                            fontSize: 40,
+                        }
+                    }
+                },
+                xAxis: {
+                    label: {
+                      style: {
+                        fontSize: 40,
+                      }
+                    }
+                },
+                yAxis: {
+                    label: {
+                      style: {
+                        fontSize: 40,
+                      }
+                    }
+                },
                 seriesField: 'key',
                 legend: { position: 'top' },
                 smooth: false,
