@@ -33,7 +33,7 @@ function Page() {
                 data: sorted,
                 xField: 'round',
                 yField: 'goals',
-                height: window.outerHeight - 20,
+                height: window.outerHeight*0.9,
                 label: {
                     style:{
                       fontSize: 16,
@@ -42,24 +42,17 @@ function Page() {
                       textBaseline: 'middle',
                     }
                 },
-                tooltip: {
-                    label: {
-                        style: {
-                            fontSize: 40,
-                        }
-                    }
-                },
                 xAxis: {
                     label: {
                       style: {
-                        fontSize: 40,
+                        fontSize: 26,
                       }
                     }
                 },
                 yAxis: {
                     label: {
                       style: {
-                        fontSize: 40,
+                        fontSize: 26,
                       }
                     }
                 },
