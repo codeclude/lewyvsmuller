@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import * as d3 from "d3";
 import './App.css';
-import * as mullergoals from './mullergoals.json'
 
 export default function App() {
   return (
@@ -14,13 +13,13 @@ export default function App() {
 
 const lewygoalsJSON = require('./lewygoals.json');
 const mullergoalsJSON = require('./mullergoals.json');
-
-const allGroup = ["Lewy 20/21", "Muller 71/72"]
+const values = [{name: "Lewy 20/21", values: lewygoalsJSON},{name: "Muller 71/72", values: mullergoalsJSON}]
+const allGroup = ["Lewy 20/21", "Muller 71/72"];
 
 const dataReady = allGroup.map( function(grpName) { // .map allows to do something for each element of the list
   return {
     name: grpName,
-    values: [lewygoalsJSON,mullergoals].map(function(d) {
+    values: values.find(vl => vl.name === grpName).values.map(function(d) {
       return {round: d.round, goals: d.goals};
     })
   };
@@ -30,9 +29,9 @@ const myColor = d3.scaleOrdinal()
       .domain(allGroup)
       .range(d3.schemeSet2);
 
-const margin = {top: 10, right: 30, bottom: 30, left: 60},
-  width = 460 - margin.left - margin.right,
-  height = 400 - margin.top - margin.bottom;
+const margin = {top: 20, right: 120, bottom: 30, left: 60},
+  width = (window.screen.width - margin.left - margin.right) * 0.85,
+  height = (window.screen.height - margin.top - margin.bottom) * 0.85;
 
 const Circles = () => {
 
@@ -63,6 +62,7 @@ const Circles = () => {
         .x(function(d) { return x(+d.round) })
         .y(function(d) { return y(+d.goals) })
 
+
       svgElement.selectAll("myLines")
         .data(dataReady)
         .enter()
@@ -87,6 +87,21 @@ const Circles = () => {
               .attr("cy", function(d) { return y(d.goals) } )
               .attr("r", 5)
               .attr("stroke", "white")
+            // .on("mouseover", function(d) {
+            //     tooltip.transition()
+            //          .duration(200)
+            //          .style("opacity", .9);
+            //     tooltip.html(d.x + "-" + d.y )
+            //          .style("left", d3.select(this).attr("cx") + "px")
+            //          .style("top", d3.select(this).attr("cy") + "px");
+            // })
+            // .on("mouseout", function(d) {
+            //     tooltip.transition()
+            //          .duration(500)
+            //          .style("opacity", 0)      
+            //   }
+            // )
+              
 
       svgElement
         .selectAll("myLabels")
