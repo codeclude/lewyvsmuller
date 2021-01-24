@@ -4,11 +4,11 @@ import { Line } from '@ant-design/charts';
 
 function Page() {
     const [config, setConfig] = useState({});
-    const { loading, error, data: lewygoalsJSON = [] } = useFetch('https://raw.githubusercontent.com/korczynsk1/lewyvsmuller/main/src/lewygoals.json', {}, [])
-    const { loading: loading2, error: error2, data: mullergoalsJSON = [] } = useFetch('https://raw.githubusercontent.com/korczynsk1/lewyvsmuller/main/src/mullergoals.json', {}, [])
+    const { loading, data: lewygoalsJSON = [] } = useFetch('https://raw.githubusercontent.com/korczynsk1/lewyvsmuller/main/src/lewygoals.json', {}, [])
+    const { loading: loading2, data: mullergoalsJSON = [] } = useFetch('https://raw.githubusercontent.com/korczynsk1/lewyvsmuller/main/src/mullergoals.json', {}, [])
 
     useEffect(() => {
-        if (!loading && ! loading2) {
+        if (!loading && !loading2) {
             // const data = mullergoalsJSON.map(el => {
             //     const lewyRound = lewygoalsJSON.find(lewy => lewy.round === el.round);
             //     if(lewyRound) {
@@ -28,7 +28,6 @@ function Page() {
             const muller = mullergoalsJSON.map(el => ({...el, key: 'muller'}))
             const data = [...lewy, ...muller];
             const sorted = data.sort((el1, el2) => el1.round - el2.round);
-            console.log('data', data)
             setConfig({
                 data: sorted,
                 xField: 'round',
@@ -97,12 +96,14 @@ function Page() {
             //     ]
             // })
         }
-    }, [loading, loading2])
+    }, [loading, loading2, lewygoalsJSON, mullergoalsJSON])
 
-    if (!loading && !loading2 && config) {
-        return (<Line {...config} />);
+    if (!loading && !loading2 && config && config.data) {
+        console.log('data', config);
+        return (
+        <Line {...config} />);
     } else {
-        return (<p>Test</p>)
+        return (<p>Loading...</p>)
     }
 }
 export default Page;

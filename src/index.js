@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <div style={{margin: 20}}>
+    <div style={{margin: 40}}>
       <h1>Lewy 20/21 vs Müller 71/72</h1>
       <Page />
     </div>
