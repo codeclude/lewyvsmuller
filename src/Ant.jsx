@@ -1,71 +1,59 @@
 import React, { useEffect, useState } from 'react';
 import useFetch from 'use-http'
 import { Line } from '@ant-design/charts';
+import { parseData } from './StatsLoader';
 
 function Page() {
     const [config, setConfig] = useState({});
-    const { loading, data: lewygoalsJSON = [] } = useFetch('https://raw.githubusercontent.com/korczynsk1/lewyvsmuller/main/src/lewygoals.json', {}, [])
-    const { loading: loading2, data: mullergoalsJSON = [] } = useFetch('https://raw.githubusercontent.com/korczynsk1/lewyvsmuller/main/src/mullergoals.json', {}, [])
+    const { loading, data: mullergoalsJSON = [] } = useFetch('https://raw.githubusercontent.com/korczynsk1/lewyvsmuller/main/src/mullergoals.json', {}, [])
 
     useEffect(() => {
-        if (!loading && !loading2) {
-            // const data = mullergoalsJSON.map(el => {
-            //     const lewyRound = lewygoalsJSON.find(lewy => lewy.round === el.round);
-            //     if(lewyRound) {
-            //         return {
-            //             round: el.round,
-            //             muller: el.goals,
-            //             lewy: lewyRound.goals
-            //         }
-            //     }
-            //     return {
-            //         round: el.round,
-            //         muller: el.goals,
-            //         lewy: 0
-            //     }
-            // });
-            const lewy = lewygoalsJSON.map(el => ({...el, key: 'lewy'}))
-            const muller = mullergoalsJSON.map(el => ({...el, key: 'muller'}))
-            const data = [...lewy, ...muller];
-            const sorted = data.sort((el1, el2) => el1.round - el2.round);
-            console.log('sorted', sorted)
-            setConfig({
-                data: sorted,
-                xField: 'round',
-                yField: 'goals',
-                height: window.outerHeight*0.9,
-                label: {
-                    style:{
-                      fontSize: 16,
-                      fontWeight: 300,
-                      textAlign: 'center',
-                      textBaseline: 'middle',
-                    }
-                },
-                xAxis: {
-                    label: {
-                      style: {
-                        fontSize: 26,
+      async function fetchData() {
+        if (!loading) {
+              const lewygoals = await parseData("https://www.transfermarkt.pl/robert-lewandowski/leistungsdaten/spieler/38253/plus/0?saison=2020");
+              const lewy = lewygoals.map(el => ({...el, key: 'lewy'}))
+              const muller = mullergoalsJSON.map(el => ({...el, key: 'muller'}))
+              const data = [...lewy, ...muller];
+              const sorted = data.sort((el1, el2) => el1.round - el2.round);
+              setConfig({
+                  data: sorted,
+                  xField: 'round',
+                  yField: 'goals',
+                  height: window.outerHeight*0.9,
+                  label: {
+                      style:{
+                        fontSize: 16,
+                        fontWeight: 300,
+                        textAlign: 'center',
+                        textBaseline: 'middle',
                       }
-                    }
-                },
-                yAxis: {
-                    label: {
-                      style: {
-                        fontSize: 26,
-                      }
-                    }
-                },
-                seriesField: 'key',
-                legend: { position: 'top' },
-                smooth: false,
-                animation: {
-                  appear: {
-                    animation: 'path-in',
-                    duration: 5000,
                   },
-                },
-            })
+                  xAxis: {
+                      label: {
+                        style: {
+                          fontSize: 26,
+                        }
+                      }
+                  },
+                  yAxis: {
+                      label: {
+                        style: {
+                          fontSize: 26,
+                        }
+                      }
+                  },
+                  seriesField: 'key',
+                  legend: { position: 'top' },
+                  smooth: false,
+                  animation: {
+                    appear: {
+                      animation: 'path-in',
+                      duration: 5000,
+                    },
+                  },
+              })
+            }
+
             // setConfig({
             //     data: [data, data],
             //     xField: 'round',
@@ -120,9 +108,10 @@ function Page() {
             //     ]
             // })
         }
-    }, [loading, loading2, lewygoalsJSON, mullergoalsJSON])
+        fetchData()
+    }, [loading, mullergoalsJSON])
 
-    if (!loading && !loading2 && config && config.data) {
+    if (!loading && config && config.data) {
         console.log('data', config);
         return (
         <Line {...config} />);

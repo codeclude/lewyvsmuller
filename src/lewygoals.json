@@ -1,9 +1,5 @@
 [
     {
-        "round": 0,
-        "goals": 0
-    },
-    {
         "round": 1,
         "goals": 1
     },
@@ -74,5 +70,17 @@
     {
         "round": 18,
         "goals": 23
+    },
+    {
+        "round": 19,
+        "goals": 24
+    },
+    {
+        "round": 20,
+        "goals": 24
+    },
+    {
+        "round": 21,
+        "goals": 25
     }
 ]

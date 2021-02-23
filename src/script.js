@@ -30,5 +30,5 @@
     
     parsedData.shift();
     
-    return parsedData;
 })();
+
