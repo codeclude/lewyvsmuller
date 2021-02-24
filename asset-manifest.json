@@ -1,22 +1,20 @@
 {
   "files": {
     "main.css": "/lewyvsmuller/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/lewyvsmuller/static/js/main.5144cbf5.chunk.js",
-    "main.js.map": "/lewyvsmuller/static/js/main.5144cbf5.chunk.js.map",
-    "runtime-main.js": "/lewyvsmuller/static/js/runtime-main.784a01ec.js",
-    "runtime-main.js.map": "/lewyvsmuller/static/js/runtime-main.784a01ec.js.map",
-    "static/js/2.2195989e.chunk.js": "/lewyvsmuller/static/js/2.2195989e.chunk.js",
-    "static/js/2.2195989e.chunk.js.map": "/lewyvsmuller/static/js/2.2195989e.chunk.js.map",
-    "static/js/3.1269a5b5.chunk.js": "/lewyvsmuller/static/js/3.1269a5b5.chunk.js",
-    "static/js/3.1269a5b5.chunk.js.map": "/lewyvsmuller/static/js/3.1269a5b5.chunk.js.map",
+    "main.js": "/lewyvsmuller/static/js/main.574c8ad4.chunk.js",
+    "main.js.map": "/lewyvsmuller/static/js/main.574c8ad4.chunk.js.map",
+    "runtime-main.js": "/lewyvsmuller/static/js/runtime-main.a77999d9.js",
+    "runtime-main.js.map": "/lewyvsmuller/static/js/runtime-main.a77999d9.js.map",
+    "static/js/2.da1b356b.chunk.js": "/lewyvsmuller/static/js/2.da1b356b.chunk.js",
+    "static/js/2.da1b356b.chunk.js.map": "/lewyvsmuller/static/js/2.da1b356b.chunk.js.map",
     "index.html": "/lewyvsmuller/index.html",
     "static/css/main.6dea0f05.chunk.css.map": "/lewyvsmuller/static/css/main.6dea0f05.chunk.css.map",
-    "static/js/2.2195989e.chunk.js.LICENSE.txt": "/lewyvsmuller/static/js/2.2195989e.chunk.js.LICENSE.txt"
+    "static/js/2.da1b356b.chunk.js.LICENSE.txt": "/lewyvsmuller/static/js/2.da1b356b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.784a01ec.js",
-    "static/js/2.2195989e.chunk.js",
+    "static/js/runtime-main.a77999d9.js",
+    "static/js/2.da1b356b.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.5144cbf5.chunk.js"
+    "static/js/main.574c8ad4.chunk.js"
   ]
 }
