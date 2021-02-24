@@ -1,4 +1,9 @@
-export const tableToJson = table => { 
+const fetch = require("node-fetch");
+var jsdom = require('jsdom');
+const { JSDOM } = jsdom;
+global.DOMParser = new JSDOM().window.DOMParser
+
+const tableToJson = table => { 
     var data = [];
     for (var i=1; i<table.rows.length; i++) { 
         var tableRow = table.rows[i]; 
@@ -11,7 +16,7 @@ export const tableToJson = table => {
     return data;
 }
 
-export const parseTableToGoals = table => {
+const parseTableToGoals = table => {
     const parsedData = table.reduce((previousValue, currentValue, index) => {
       if (currentValue.length < 5) {
         return previousValue;
@@ -23,19 +28,16 @@ export const parseTableToGoals = table => {
       return previousValue;
     }, [{round:0, goals: 0}]);
     
-    parsedData.shift();
-    
     return parsedData;
-  }
+}
 
-  export const parseData = async url => {
+exports.parseData = async url => {
     const document = await fetch(url)
         .then((data) => data.text())
         .then(res => {
-            var parser = new DOMParser();
-            return parser.parseFromString(res, 'text/html');
+          return new JSDOM(`${res}`);
         });
-    const seasonTable = document
+    const seasonTable = document.window.document
       .querySelectorAll('.table-header img[title="1. Bundesliga"]')[0]
       .closest('div.box')
       .querySelector('div.responsive-table table');

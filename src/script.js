@@ -1,34 +1,18 @@
-(function() {
-    const tableToJson = table => { 
-        var data = [];
-        for (var i=1; i<table.rows.length; i++) { 
-            var tableRow = table.rows[i]; 
-            var rowData = []; 
-            for (var j=0; j<tableRow.cells.length; j++) { 
-                rowData.push(tableRow.cells[j].innerHTML);; 
-            } 
-            data.push(rowData); 
-        } 
-        return data; 
-    }
-    
-    const seasonTable = document
-        .querySelectorAll('.table-header img[title="1. Bundesliga"]')[0]
-        .closest('div.box')
-        .querySelector('div.responsive-table table');
-    
-    const tableAsJSON = tableToJson(seasonTable);
-    
-    const parsedData = tableAsJSON.reduce(function(previousValue, currentValue, index) {
-      if (isNaN(+currentValue[9])) {
-        previousValue.push({round: index+1, goals: previousValue[previousValue.length-1].goals})
-      } else {
-        previousValue.push({round: index+1, goals: previousValue[previousValue.length-1].goals + +currentValue[9]})
-      }
-      return previousValue;
-    }, [{round:0, goals: 0}]);
-    
-    parsedData.shift();
-    
-})();
+var fs = require('fs');
+const { parseData } = require('./StatsLoader');
 
+fs.readFile('./src/lewygoals.json', 'utf-8', async (err, data) => {
+    if (err) throw err;
+
+    parseData("https://www.transfermarkt.pl/robert-lewandowski/leistungsdaten/spieler/38253/plus/0?saison=2020")
+    .then((lewygoals) => {
+        if(JSON.stringify(lewygoals) != data) {
+            fs.writeFile('./src/lewygoals.json', JSON.stringify(lewygoals), function (err) {
+                if (err) return console.log(err);
+                console.log('File modified');
+              });
+        }
+    })
+    .catch((e) => console.warn(e));
+    
+});
