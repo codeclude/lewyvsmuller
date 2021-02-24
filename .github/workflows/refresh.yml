@@ -19,7 +19,7 @@ jobs:
     - name: Build
       run: npm install
     - name: Scrape
-      run: npm run action
+      run: npm run scrape
     - name: Commit files
       run: |
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
