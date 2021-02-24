@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import useFetch from 'use-http'
 import { Line } from '@ant-design/charts';
-import { parseData } from './StatsLoader';
 
 function Page() {
     const [config, setConfig] = useState({});
     const { loading, data: mullergoalsJSON = [] } = useFetch('https://raw.githubusercontent.com/korczynsk1/lewyvsmuller/main/src/mullergoals.json', {}, [])
+    const { data: lewygoalsJSON = [] } = useFetch('https://raw.githubusercontent.com/korczynsk1/lewyvsmuller/main/src/lewygoals.json', {}, [])
 
     useEffect(() => {
       async function fetchData() {
         if (!loading) {
-              const lewygoals = await parseData("https://www.transfermarkt.pl/robert-lewandowski/leistungsdaten/spieler/38253/plus/0?saison=2020");
-              const lewy = lewygoals.map(el => ({...el, key: 'lewy'}))
+              const lewy = lewygoalsJSON.map(el => ({...el, key: 'lewy'}))
               const muller = mullergoalsJSON.map(el => ({...el, key: 'muller'}))
               const data = [...lewy, ...muller];
               const sorted = data.sort((el1, el2) => el1.round - el2.round);
@@ -109,7 +108,7 @@ function Page() {
             // })
         }
         fetchData()
-    }, [loading, mullergoalsJSON])
+    }, [loading, mullergoalsJSON, lewygoalsJSON])
 
     if (!loading && config && config.data) {
         console.log('data', config);
