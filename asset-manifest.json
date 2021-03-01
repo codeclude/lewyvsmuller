@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/lewyvsmuller/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/lewyvsmuller/static/js/main.574c8ad4.chunk.js",
-    "main.js.map": "/lewyvsmuller/static/js/main.574c8ad4.chunk.js.map",
+    "main.css": "/lewyvsmuller/static/css/main.38469daa.chunk.css",
+    "main.js": "/lewyvsmuller/static/js/main.82aa2722.chunk.js",
+    "main.js.map": "/lewyvsmuller/static/js/main.82aa2722.chunk.js.map",
     "runtime-main.js": "/lewyvsmuller/static/js/runtime-main.a77999d9.js",
     "runtime-main.js.map": "/lewyvsmuller/static/js/runtime-main.a77999d9.js.map",
-    "static/js/2.da1b356b.chunk.js": "/lewyvsmuller/static/js/2.da1b356b.chunk.js",
-    "static/js/2.da1b356b.chunk.js.map": "/lewyvsmuller/static/js/2.da1b356b.chunk.js.map",
+    "static/js/2.e02ccfd1.chunk.js": "/lewyvsmuller/static/js/2.e02ccfd1.chunk.js",
+    "static/js/2.e02ccfd1.chunk.js.map": "/lewyvsmuller/static/js/2.e02ccfd1.chunk.js.map",
     "index.html": "/lewyvsmuller/index.html",
-    "static/css/main.6dea0f05.chunk.css.map": "/lewyvsmuller/static/css/main.6dea0f05.chunk.css.map",
-    "static/js/2.da1b356b.chunk.js.LICENSE.txt": "/lewyvsmuller/static/js/2.da1b356b.chunk.js.LICENSE.txt"
+    "static/css/main.38469daa.chunk.css.map": "/lewyvsmuller/static/css/main.38469daa.chunk.css.map",
+    "static/js/2.e02ccfd1.chunk.js.LICENSE.txt": "/lewyvsmuller/static/js/2.e02ccfd1.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.a77999d9.js",
-    "static/js/2.da1b356b.chunk.js",
-    "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.574c8ad4.chunk.js"
+    "static/js/2.e02ccfd1.chunk.js",
+    "static/css/main.38469daa.chunk.css",
+    "static/js/main.82aa2722.chunk.js"
   ]
 }
