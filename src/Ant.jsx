@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import useFetch from 'use-http'
 import { Line } from '@ant-design/charts';
 
+const COLORS = [
+  '#2E6ABD', '#ED1248'
+]
+
 function Page() {
     const [config, setConfig] = useState({});
     const { loading, data: mullergoalsJSON = [] } = useFetch('https://raw.githubusercontent.com/korczynsk1/lewyvsmuller/main/src/mullergoals.json', {}, [])
@@ -10,15 +14,15 @@ function Page() {
     useEffect(() => {
       async function fetchData() {
         if (!loading) {
-              const lewy = lewygoalsJSON.map(el => ({...el, key: 'lewy'}))
-              const muller = mullergoalsJSON.map(el => ({...el, key: 'muller'}))
+              const lewy = lewygoalsJSON.map(el => ({...el, key: 'Lewandowski'}))
+              const muller = mullergoalsJSON.map(el => ({...el, key: 'Müller'}))
               const data = [...lewy, ...muller];
               const sorted = data.sort((el1, el2) => el1.round - el2.round);
               setConfig({
                   data: sorted,
                   xField: 'round',
                   yField: 'goals',
-                  height: window.outerHeight*0.9,
+                  color: COLORS,
                   label: {
                       style:{
                         fontSize: 16,
@@ -41,6 +45,20 @@ function Page() {
                         }
                       }
                   },
+                  tooltip: {
+                    customContent: (title, data) => {
+                      return `<div>
+                        <div class="g2-tooltip-title">Round: ${title}</div>
+                        <ul class="g2-tooltip-list">
+                          ${data.map(element => `<li class="g2-tooltip-list-item">
+                          <span class="g2-tooltip-marker" style="background-color: ${element.color}; width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 8px;"></span>
+                          <span class="g2-tooltip-name">${element.data.key}</span>:
+                          <span class="g2-tooltip-value" style="display: inline-block; float: right; margin-left: 30px;">${element.data.goals}</span>
+                          </li>`).join(' ')}
+                        </ul>
+                      </div>`;
+                    }
+                  },
                   seriesField: 'key',
                   legend: { position: 'top' },
                   smooth: false,
@@ -52,68 +70,12 @@ function Page() {
                   },
               })
             }
-
-            // setConfig({
-            //     data: [data, data],
-            //     xField: 'round',
-            //     yField: ['muller', 'lewy'],
-            //     geometryOptions: [
-            //     {
-            //         geometry: 'line',
-            //         smooth: false,
-            //         color: '#5AD8A6',
-            //         lineStyle: {
-            //         lineWidth: 3,
-            //         opacity: 0.5,
-            //         },
-            //         label: {
-            //         formatter: (datum) => {
-            //             return `${datum.muller}`;
-            //         },
-            //         },
-            //         point: {
-            //         shape: 'circle',
-            //         size: 4,
-            //         style: {
-            //             opacity: 0.5,
-            //             stroke: '#5AD8A6',
-            //             fill: '#fff',
-            //         },
-            //         },
-            //     },
-            //     {
-            //         geometry: 'line',
-            //         smooth: false,
-            //         color: '#5B8FF9',
-            //         label: {
-            //         formatter: (datum) => {
-            //             return `${datum.lewy}`;
-            //         },
-            //         },
-            //         lineStyle: {
-            //         lineWidth: 3,
-            //         lineDash: [5, 5],
-            //         },
-            //         point: {
-            //             shape: 'circle',
-            //             size: 4,
-            //             style: {
-            //             opacity: 0.5,
-            //             stroke: '#5B8FF9',
-            //             fill: '#fff',
-            //             },
-            //         },
-            //     },
-            //     ]
-            // })
         }
         fetchData()
     }, [loading, mullergoalsJSON, lewygoalsJSON])
 
     if (!loading && config && config.data) {
-        console.log('data', config);
-        return (
-        <Line {...config} />);
+        return (<div id="chart"><Line {...config} /></div>);
     } else {
         return (<p>Loading...</p>)
     }

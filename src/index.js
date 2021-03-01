@@ -5,8 +5,8 @@ import Page from './Ant';
 
 ReactDOM.render(
   <React.StrictMode>
-    <div style={{margin: 40}}>
-      <h1>Lewy 20/21 vs Müller 71/72</h1>
+    <div id="container">
+      <h1 id="title">Lewy 20/21 vs Müller 71/72</h1>
       <Page />
     </div>
   </React.StrictMode>,

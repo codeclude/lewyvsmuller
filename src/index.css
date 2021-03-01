@@ -1,5 +1,6 @@
 body {
-  margin: 0;
+  background: url(https://svgshare.com/i/Ubn.svg) center center fixed;
+  background-size: cover;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -7,7 +8,23 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+#container {
+  margin: 1vh;
+}
+
+#title {
+  font-weight: 200;
+  padding: 1vh;
+  background-color: #fffffff2;
+}
+
+@media only screen and (max-width: 768px) {
+  #chart {
+    background-color: #fffffff2;
+  }
+}
+
+#chart {
+  background-color: #fffffff2;
+  height: 90vh;
 }
