@@ -39,7 +39,7 @@ exports.parseData = async url => {
           return new JSDOM(`${res}`);
         });
     const seasonTable = document.window.document
-      .querySelectorAll('.table-header img[title="1. Bundesliga"]')[0]
+      .querySelectorAll('.table-header img[title="Bundesliga"]')[0]
       .closest('div.box')
       .querySelector('div.responsive-table table');
     
