@@ -35,6 +35,7 @@ exports.parseData = async url => {
     const document = await fetch(url)
         .then((data) => data.text())
         .then(res => {
+            console.log('response', res);
           return new JSDOM(`${res}`);
         });
     const seasonTable = document.window.document
