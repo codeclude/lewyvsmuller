@@ -6,7 +6,7 @@ import Page from './Ant';
 ReactDOM.render(
   <React.StrictMode>
     <div id="container">
-      <h1 id="title">Lewy 20/21 vs Müller 71/72</h1>
+      <h1 id="title">Lewy👑 20/21 vs Müller 71/72</h1>
       <Page />
     </div>
   </React.StrictMode>,
